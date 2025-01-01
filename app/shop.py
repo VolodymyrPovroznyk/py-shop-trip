@@ -10,7 +10,7 @@ class Shop:
 
     def calculate_product_cost(self, product: str, number: int) -> int | float:
         result = self.products[product] * number
-        return int(result) if result.is_integer() else result
+        return int(result) if result % 1 == 0 else result
 
     def calculate_products_total_cost(self, products: dict) -> int | float:
         return sum(
