@@ -7,14 +7,14 @@ from app.car import fuel_costs
 @dataclass
 class Customer:
     name: str
-    products: dict
+    product_cart: dict
     location: list
     money: int
     car: dict
 
     def total_trip_costs(self, shop: Shop, fuel_price: float) -> int | float:
         products_total_costs = shop.calculate_products_total_cost(
-            self.products
+            self.product_cart
         )
         fuel_total_costs = fuel_costs(
             self.location,

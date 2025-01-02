@@ -5,9 +5,7 @@ def trip_distance(
         coordinates1: list[int],
         coordinates2: list[int]
 ) -> int | float:
-    x1, y1 = coordinates1
-    x2, y2 = coordinates2
-    one_way_distance = math.sqrt((x2 - x1)**2 + (y2 - y1)**2)
+    one_way_distance = math.dist(coordinates1, coordinates2)
     return one_way_distance * 2
 
 

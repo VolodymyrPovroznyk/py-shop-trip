@@ -13,24 +13,14 @@ def shop_trip() -> None:
     shops_data = data["shops"]
 
     for customer_data in customers_data:
-        customer = Customer(
-            customer_data["name"],
-            customer_data["product_cart"],
-            customer_data["location"],
-            customer_data["money"],
-            customer_data["car"]
-        )
+        customer = Customer(**customer_data)
 
         print(f"{customer.name} has {customer.money} dollars")
 
         relevant_shop = None
         relevant_shop_trip_costs = float("inf")
         for shop_data in shops_data:
-            shop = Shop(
-                shop_data["name"],
-                shop_data["location"],
-                shop_data["products"]
-            )
+            shop = Shop(**shop_data)
             current_trip_costs = round(
                 customer.total_trip_costs(shop, fuel_price),
                 2
@@ -50,7 +40,7 @@ def shop_trip() -> None:
 
         home_location = customer.location
         customer.location = relevant_shop.location
-        relevant_shop.create_receipt(customer.name, customer.products)
+        relevant_shop.create_receipt(customer.name, customer.product_cart)
 
         print(f"{customer.name} rides home")
         customer.location = home_location
